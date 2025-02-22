@@ -36,30 +36,32 @@ const Login: React.FC = () => {
 
     return (
         <div className={styles.loginContainer}>
-            <h2>Login</h2>
-            {error && <p className={styles.error}>{error}</p>}
-            <form onSubmit={handleLogin}>
-                <input
-                    type="text"
-                    placeholder="Username"
-                    name="username"
-                    value={userCredentials.username}
-                    onChange={handleCredentials}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={userCredentials.password}
-                    onChange={handleCredentials}
-                    required
-                />
-                <button type="submit">Login</button>
-            </form>
-            <p>
-                Don't have an account? <Link to="/register">Register</Link>
-            </p>
+            <div className={styles.card}>
+                <h2>Login</h2>
+                {error && <p className={styles.error}>{error}</p>}
+                <form onSubmit={handleLogin}>
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={userCredentials.username}
+                        onChange={handleCredentials}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={userCredentials.password}
+                        onChange={handleCredentials}
+                        required
+                    />
+                    <button type="submit">Login</button>
+                </form>
+                <p className={styles.registerText}>
+                    Don't have an account? <Link to="/register">Register</Link>
+                </p>
+            </div>
         </div>
     );
 };

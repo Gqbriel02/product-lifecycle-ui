@@ -44,62 +44,64 @@ const Register: React.FC = () => {
 
     return (
         <div className={styles.registerContainer}>
-            <h2>Register</h2>
-            {error && <p className={styles.error}>{error}</p>}
-            <form onSubmit={handleRegister}>
-                <input
-                    type="text"
-                    placeholder="Full Name"
-                    name="name"
-                    value={userDetails.name}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Username"
-                    name="username"
-                    value={userDetails.username}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="email"
-                    placeholder="Email"
-                    name="email"
-                    value={userDetails.email}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Password"
-                    name="password"
-                    value={userDetails.password}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="password"
-                    placeholder="Confirm Password"
-                    name="confirmPassword"
-                    value={userDetails.confirmPassword}
-                    onChange={handleChange}
-                    required
-                />
-                <input
-                    type="text"
-                    placeholder="Phone Number"
-                    name="phoneNumber"
-                    value={userDetails.phoneNumber}
-                    onChange={handleChange}
-                    required
-                />
-                <button type="submit">Register</button>
-            </form>
-            <p>
-                Already have an account? <Link to="/login">Login</Link>
-            </p>
+            <div className={styles.card}>
+                <h2>Register</h2>
+                {error && <p className={styles.error}>{error}</p>}
+                <form onSubmit={handleRegister}>
+                    <input
+                        type="text"
+                        placeholder="Full Name"
+                        name="name"
+                        value={userDetails.name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Username"
+                        name="username"
+                        value={userDetails.username}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="email"
+                        placeholder="Email"
+                        name="email"
+                        value={userDetails.email}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Password"
+                        name="password"
+                        value={userDetails.password}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="password"
+                        placeholder="Confirm Password"
+                        name="confirmPassword"
+                        value={userDetails.confirmPassword}
+                        onChange={handleChange}
+                        required
+                    />
+                    <input
+                        type="text"
+                        placeholder="Phone Number"
+                        name="phoneNumber"
+                        value={userDetails.phoneNumber}
+                        onChange={handleChange}
+                        required
+                    />
+                    <button type="submit">Register</button>
+                </form>
+                <p className={styles.loginText}>
+                    Already have an account? <Link to="/login">Login</Link>
+                </p>
+            </div>
         </div>
     );
 };
