@@ -47,13 +47,14 @@ const Register: React.FC = () => {
             <div className={styles.card}>
                 <h2>Register</h2>
                 {error && <p className={styles.error}>{error}</p>}
-                <form onSubmit={handleRegister}>
+                <form onSubmit={handleRegister} className={styles.registerForm}>
                     <input
                         type="text"
                         placeholder="Full Name"
                         name="name"
                         value={userDetails.name}
                         onChange={handleChange}
+                        className={styles.registerInput}
                         required
                     />
                     <input
@@ -62,6 +63,7 @@ const Register: React.FC = () => {
                         name="username"
                         value={userDetails.username}
                         onChange={handleChange}
+                        className={styles.registerInput}
                         required
                     />
                     <input
@@ -70,6 +72,7 @@ const Register: React.FC = () => {
                         name="email"
                         value={userDetails.email}
                         onChange={handleChange}
+                        className={styles.registerInput}
                         required
                     />
                     <input
@@ -78,6 +81,7 @@ const Register: React.FC = () => {
                         name="password"
                         value={userDetails.password}
                         onChange={handleChange}
+                        className={styles.registerInput}
                         required
                     />
                     <input
@@ -86,6 +90,7 @@ const Register: React.FC = () => {
                         name="confirmPassword"
                         value={userDetails.confirmPassword}
                         onChange={handleChange}
+                        className={styles.registerInput}
                         required
                     />
                     <input
@@ -94,9 +99,10 @@ const Register: React.FC = () => {
                         name="phoneNumber"
                         value={userDetails.phoneNumber}
                         onChange={handleChange}
+                        className={styles.registerInput}
                         required
                     />
-                    <button type="submit">Register</button>
+                    <button type="submit" className={styles.registerButton}>Register</button>
                 </form>
                 <p className={styles.loginText}>
                     Already have an account? <Link to="/login">Login</Link>

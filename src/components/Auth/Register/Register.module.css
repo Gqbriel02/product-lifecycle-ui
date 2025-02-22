@@ -24,14 +24,14 @@ h2 {
     color: #333;
 }
 
-form {
+.registerForm {
     display: flex;
     flex-direction: column;
     /*width: 300px;*/
     gap: 5px;
 }
 
-input {
+.registerInput {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
@@ -40,13 +40,13 @@ input {
     transition: all 0.3s ease;
 }
 
-input:focus {
+.registerInput:focus {
     border-color: #8e44ad;
     outline: none;
     box-shadow: 0px 0px 8px rgba(142, 68, 173, 0.4);
 }
 
-button {
+.registerButton {
     padding: 10px;
     background: linear-gradient(135deg, #3498db, #8e44ad);
     color: white;
@@ -57,7 +57,7 @@ button {
     transition: all 0.3s ease;
 }
 
-button:hover {
+.registerButton:hover {
     background: linear-gradient(135deg, #2980b9, #6c3483);
 }
 

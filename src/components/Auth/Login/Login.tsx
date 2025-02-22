@@ -39,13 +39,14 @@ const Login: React.FC = () => {
             <div className={styles.card}>
                 <h2>Login</h2>
                 {error && <p className={styles.error}>{error}</p>}
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleLogin} className={styles.loginForm}>
                     <input
                         type="text"
                         placeholder="Username"
                         name="username"
                         value={userCredentials.username}
                         onChange={handleCredentials}
+                        className={styles.loginInput}
                         required
                     />
                     <input
@@ -54,9 +55,10 @@ const Login: React.FC = () => {
                         name="password"
                         value={userCredentials.password}
                         onChange={handleCredentials}
+                        className={styles.loginInput}
                         required
                     />
-                    <button type="submit">Login</button>
+                    <button type="submit" className={styles.loginButton}>Login</button>
                 </form>
                 <p className={styles.registerText}>
                     Don't have an account? <Link to="/register">Register</Link>
