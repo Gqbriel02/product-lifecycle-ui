@@ -1,0 +1,113 @@
+.container {
+    text-align: center;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.productCard {
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    width: 280px;
+    transition: transform 0.2s ease-in-out;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.productCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+.productCard p {
+    font-size: 16px;
+    color: #555;
+    margin: 5px 0;
+}
+
+.productCard strong {
+    color: #222;
+}
+
+.seeMoreButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.seeMoreButton:hover {
+    background-color: #0056b3;
+}
+
+.addButton {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 15px;
+    border-radius: 40%;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+}
+
+.addButton:hover {
+    background-color: #218838;
+}
+
+.filterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.filterContainer label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.filterDropdown {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 2px solid #007bff;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.filterDropdown:hover {
+    border-color: #0056b3;
+}
+
+.filterDropdown:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
