@@ -1,0 +1,158 @@
+.detailedProductContainer {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.productTitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.detailsForm {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.formField {
+    display: flex;
+    flex-direction: column;
+}
+
+.largeField {
+    grid-column: span 3;
+}
+
+.mediumField {
+    grid-column: span 2;
+}
+
+.smallField {
+    grid-column: span 1;
+}
+
+label {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.inputLabel {
+    display: flex;
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 4px;
+}
+
+.detailsForm input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #f3f3f3;
+    color: #555;
+    cursor: not-allowed;
+}
+
+.dataTableContainer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+.selectInput {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.saveButton {
+    background-color: #17a2b8;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background 0.3s ease-in-out;
+    align-self: flex-end;
+}
+
+.saveButton:hover {
+    background-color: #138496;
+}
+
+.saveButton:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+}
+
+.backButton {
+    background-color: #ff4b4b;
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    transition: background 0.3s ease-in-out;
+    align-self: flex-start;
+}
+
+.backButton:hover {
+    background-color: #cc0000;
+}
+
+.reportButton {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+.reportButton:hover {
+    background-color: #0056b3;
+}
+
+.buttonRow {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rightButtons {
+    display: flex;
+    gap: 20px;
+}
+
+.reportButton, .saveButton, .backButton {
+    width: auto;
+    margin: 0;
+    align-self: auto;
+    display: inline-block;
+}
+
