@@ -35,29 +35,74 @@
     border: 2px solid #ccc;
 }
 
-.logout {
-    background: transparent;
-    border: none;
-    padding: 0px 0px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.logout:hover {
-    filter: brightness(70%);
-}
-
-
-.navigation .user-info {
+.userSection {
+    position: relative;
     display: flex;
     align-items: center;
 }
 
-.navigation .user-info span {
-    margin-right: 10px;
-    font-weight: bold;
+.userMenu {
+    position: relative;
+}
+
+.userName {
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 2px solid #333;
     border-radius: 5px;
-    border: 1px solid black;
-    padding: 10px;
     background-color: #f0f0f0;
+    color: #333;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+}
+
+.userName:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.dropdownMenu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+    z-index: 10;
+}
+
+.dropdownMenu a,
+.dropdownMenu button {
+    padding: 10px;
+    text-align: left;
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    overflow: hidden;
+}
+
+.dropdownMenu a:hover,
+.dropdownMenu button:hover {
+    background: #f0f0f0;
+}
+
+.logoutButton {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: red;
+}
+
+.logoutButton img {
+    width: 20px;
+    height: 20px;
 }

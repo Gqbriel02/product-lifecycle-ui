@@ -1,6 +1,6 @@
 import styles from './Navbar.module.css'
 import {Link, useLocation, useNavigate} from "react-router-dom"
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {AuthContext} from "../../context/AuthContext.tsx";
 import LogoutIcon from "../../assets/logout.svg"
 
@@ -8,6 +8,7 @@ const Navbar = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const { isAuthenticated, logout, currentUser } = useContext(AuthContext)!;
+    const [dropdownOpen, setDropdownOpen] = useState(false);
 
     if (!isAuthenticated) {
         return null;
@@ -31,19 +32,39 @@ const Navbar = () => {
         }
     };
 
+    const handleLinkClick = () => {
+        setDropdownOpen(false);
+    };
+
     return (
         <nav className={styles.navigation}>
             <div className={styles.links}>
                 <Link to="/" onClick={handleHomeClick}> Home </Link>
             </div>
-            <div className={styles['user-info']}>
-                {currentUser && <span>{currentUser.username}</span>}
-                <button className={styles['logout']} type="button" onClick={handleLogout}>
-                    <img src={LogoutIcon} alt="logout"/>
-                </button>
+            <h2>Product Lifecycle Management System</h2>
+            <div className={styles.userSection}>
+                {currentUser && (
+                    <div className={styles.userMenu}>
+                        <button className={styles.userName} onClick={() => setDropdownOpen(!dropdownOpen)}>
+                            {currentUser.name}
+                        </button>
+                        {dropdownOpen && (
+                            <div className={styles.dropdownMenu}>
+                                <Link to="/profile" onClick={handleLinkClick}>Profile</Link>
+                                {currentUser.roles.some((role: any) => role.roleName === "Admin") && (
+                                    <Link to="/admin" onClick={handleLinkClick}>Admin Dashboard</Link>
+                                )}
+                                <button onClick={handleLogout} className={styles.logoutButton}>
+                                    <img src={LogoutIcon} alt="logout"/>
+                                    Logout
+                                </button>
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         </nav>
     );
-}
+};
 
 export default Navbar;
