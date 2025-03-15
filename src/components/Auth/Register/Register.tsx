@@ -2,6 +2,7 @@ import React, { useState, useContext, ChangeEvent } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./Register.module.css";
 import { AuthContext } from "../../../context/AuthContext.tsx";
+import ErrorMessage from "../../Error/Error.tsx"
 
 const Register: React.FC = () => {
     const { register } = useContext(AuthContext)!;
@@ -46,7 +47,7 @@ const Register: React.FC = () => {
         <div className={styles.registerContainer}>
             <div className={styles.card}>
                 <h2>Register</h2>
-                {error && <p className={styles.error}>{error}</p>}
+                {error && <ErrorMessage errorMessage={error}></ErrorMessage>}
                 <form onSubmit={handleRegister} className={styles.registerForm}>
                     <input
                         type="text"

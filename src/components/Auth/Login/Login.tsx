@@ -2,6 +2,7 @@ import React, { useState, useContext, ChangeEvent } from "react";
 import { AuthContext } from "../../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
 import styles from "./Login.module.css";
+import ErrorMessage from "../../Error/Error.tsx"
 
 const Login: React.FC = () => {
     const { login } = useContext(AuthContext)!;
@@ -38,7 +39,7 @@ const Login: React.FC = () => {
         <div className={styles.loginContainer}>
             <div className={styles.card}>
                 <h2>Login</h2>
-                {error && <p className={styles.error}>{error}</p>}
+                {error && <ErrorMessage errorMessage={error}></ErrorMessage>}
                 <form onSubmit={handleLogin} className={styles.loginForm}>
                     <input
                         type="text"
