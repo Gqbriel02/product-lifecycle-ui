@@ -4,10 +4,25 @@ import { AuthContext } from "../../context/AuthContext";
 import Loading from "../Loading/Loading.tsx";
 import ProfileIcon from "../../assets/user-profile-icon.svg"
 import ErrorComponent from "../Error/Error.tsx";
+import axios from "axios";
+
+interface Role {
+    id: number;
+    roleName: string;
+}
+
+interface User {
+    id: number;
+    name: string;
+    username: string;
+    email: string;
+    phoneNumber: string;
+    roles: Role[];
+}
 
 const Profile: React.FC = () => {
     const { isAuthenticated } = useContext(AuthContext)!;
-    const [user, setUser] = useState<any>(null);
+    const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
 
@@ -21,21 +36,14 @@ const Profile: React.FC = () => {
             }
 
             try {
-                const response = await fetch("http://localhost:8080/api/users/profile", {
-                    method: "GET",
+                const response = await axios.get("http://localhost:8080/api/users/profile", {
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": `Bearer ${token}`,
                     },
-                    credentials: "include",
+                    withCredentials: true,
                 });
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch user profile.");
-                }
-
-                const data = await response.json();
-                setUser(data);
+                setUser(response.data);
             } catch (err) {
                 console.error("Error: ", err);
                 setError("Could not load profile.");
@@ -52,15 +60,31 @@ const Profile: React.FC = () => {
     if (loading) return <Loading />;
     if (error) return <ErrorComponent errorMessage={error} />;
 
+    const userFields = [
+        { label: "Name", value: user?.name },
+        { label: "Username", value: user?.username },
+        { label: "Email", value: user?.email },
+        { label: "Phone", value: user?.phoneNumber },
+        {
+            label: "Roles",
+            value:
+                user?.roles && user?.roles?.length > 0
+                    ? user?.roles.map((role) => role.roleName).join(", ")
+                    : "No roles",
+        },
+    ];
+
+
     return (
         <div className={styles.profileContainer}>
             <div className={styles.card}>
                 <img src={ProfileIcon} alt="Profile" className={styles.profileImage}/>
-                <h2>{user.name}</h2>
-                <p><strong>Role:</strong> {user.roles.length > 0 ? user.roles[0].roleName : "No role"}</p>
-                <p><strong>Username:</strong> {user.username}</p>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Phone:</strong> {user.phoneNumber}</p>
+
+                {userFields.map((field, idx) => (
+                    <p key={idx}>
+                        <strong>{field.label}:</strong> {field.value}
+                    </p>
+                ))}
             </div>
         </div>
     );
