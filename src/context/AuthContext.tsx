@@ -23,15 +23,20 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        const storedUser = localStorage.getItem("currentUser");
 
         if (!token) {
-            console.log("No token found, user is not authenticated.");
             setIsAuthenticated(false);
             setLoading(false);
             return;
         }
 
-        setIsAuthenticated(true);
+        if (storedUser) {
+            setCurrentUser(JSON.parse(storedUser));
+            setIsAuthenticated(true);
+            setLoading(false);
+            return;
+        }
 
         axios
             .get("http://localhost:8080/api/users/profile", {
@@ -39,11 +44,9 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                 withCredentials: true,
             })
             .then((response) => {
-                console.log("User session restored:", response.data);
                 setCurrentUser(response.data);
             })
-            .catch((error) => {
-                console.error("Session validation failed:", error);
+            .catch(() => {
                 setIsAuthenticated(false);
                 localStorage.removeItem("token");
             })
@@ -56,7 +59,6 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
         try {
             const response = await axios.post("http://localhost:8080/api/auth/login", { username, password });
 
-            console.log("Login successful, setting token:", response.data.token);
             localStorage.setItem("token", response.data.token);
             setIsAuthenticated(true);
 
@@ -65,19 +67,22 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                 withCredentials: true,
             });
 
-            console.log("User profile loaded:", profileResponse.data);
             setCurrentUser(profileResponse.data);
+            localStorage.setItem("currentUser", JSON.stringify(profileResponse.data));
 
             navigate("/");
-        } catch (error) {
-            console.error("Login failed:", error);
-            throw new Error("Login failed");
+        } catch (error: any) {
+            if (error.response && error.response.status === 401) {
+                throw new Error("Invalid username or password.");
+            } else {
+                throw new Error("Login failed. Please try again later.");
+            }
         }
     };
 
     const register = async (name: string, username: string, email: string, password: string, phoneNumber: string) => {
         try {
-            const response = await axios.post("http://localhost:8080/api/auth/register", {
+            await axios.post("http://localhost:8080/api/auth/register", {
                 name,
                 username,
                 email,
@@ -87,16 +92,19 @@ const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => 
                 headers: { "Content-Type": "application/json" },
                 withCredentials: true
             });
-            console.log("Registration successful", response.data);
-        } catch (error) {
-            console.error("Registration failed:", error);
-            throw new Error("Registration failed");
+        } catch (error: any) {
+            if (error.response) {
+                throw new Error(error.response.data || "Registration failed.");
+            } else {
+                throw new Error("Registration failed. Please try again.");
+            }
         }
     };
 
     const logout = () => {
         console.log("Logging out...");
         localStorage.removeItem("token");
+        localStorage.removeItem("currentUser");
         setIsAuthenticated(false);
         setCurrentUser(null);
         navigate("/login");
